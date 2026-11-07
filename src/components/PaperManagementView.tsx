@@ -132,6 +132,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
       subjectType: addSubjectType,
       examinationType: addExamType,
       paperCategory,
+      term: addExamType.toLowerCase().includes('midterm') ? 'Midterm' : 'Final',
       status: 'Pending',
       lastUpdatedDate: new Date().toISOString().split('T')[0],
       remarks: 'Manually added custom examination requirement.',
@@ -345,7 +346,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                       (st) => (
                         <button
                           key={st}
-                          onClick={() => onUpdatePaperStatus(paper.id, st)}
+                          onClick={() => onUpdatePaperStatus(paper.id, st, paper.term)}
                           className={`px-2 py-1 text-[11px] font-semibold rounded-lg transition-colors border ${
                             paper.status === st
                               ? 'bg-indigo-600 text-white border-indigo-500 shadow-xs'

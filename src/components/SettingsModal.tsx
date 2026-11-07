@@ -74,11 +74,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
-      <div className="w-full max-w-xl bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-xs">
+      <div className="w-full max-w-xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400">
+            <div className="p-2 rounded-2xl bg-indigo-500/10 text-indigo-400">
               <User className="w-5 h-5" />
             </div>
             <div>
@@ -92,7 +92,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         </div>
 
         {msg && (
-          <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2">
+          <div className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2">
             <Check className="w-4 h-4" /> {msg}
           </div>
         )}
@@ -105,7 +105,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               required
               value={portalTitle}
               onChange={(e) => setPortalTitle(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-semibold"
+              className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-semibold"
             />
           </div>
 
@@ -117,7 +117,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 required
                 value={lecturerName}
                 onChange={(e) => setLecturerName(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-semibold"
+                className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-semibold"
               />
             </div>
 
@@ -128,7 +128,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 required
                 value={academicYear}
                 onChange={(e) => setAcademicYear(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-mono"
+                className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-mono"
               />
             </div>
           </div>
@@ -139,7 +139,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               <select
                 value={activeSession}
                 onChange={(e) => setActiveSession(e.target.value as AcademicSession)}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
               >
                 <option value="Fall">Fall</option>
                 <option value="Spring">Spring</option>
@@ -153,7 +153,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 required
                 value={primarySubject}
                 onChange={(e) => setPrimarySubject(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
               />
             </div>
 
@@ -163,7 +163,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 type="text"
                 value={primarySubjectCode}
                 onChange={(e) => setPrimarySubjectCode(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-mono"
+                className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-mono"
               />
             </div>
           </div>
@@ -171,7 +171,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           <div className="pt-2 flex justify-end">
             <button
               type="submit"
-              className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md shadow-indigo-600/20"
+              className="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md shadow-indigo-600/20"
             >
               Save Configuration
             </button>
@@ -179,7 +179,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         </form>
 
         {/* Data Management & Backup/Restore Section */}
-        <div className="pt-4 border-t border-slate-800 space-y-3">
+        <div className="pt-4 border-t border-neutral-800 space-y-3">
           <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
             Data Backup & Synchronization
           </h4>
@@ -187,19 +187,19 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={handleExportBackup}
-              className="px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 hover:border-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5"
             >
               <Download className="w-3.5 h-3.5 text-indigo-400" /> Export JSON Backup
             </button>
 
-            <label className="px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 hover:border-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
+            <label className="px-3.5 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 hover:border-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 cursor-pointer">
               <Upload className="w-3.5 h-3.5 text-emerald-400" /> Restore JSON Backup
               <input type="file" accept=".json" className="hidden" onChange={handleImportBackup} />
             </label>
 
             <button
               onClick={onResetData}
-              className="px-3.5 py-2 rounded-xl bg-slate-950 border border-rose-500/30 hover:bg-rose-500/10 text-rose-400 text-xs font-semibold flex items-center gap-1.5 ml-auto"
+              className="px-3.5 py-2 rounded-2xl bg-neutral-950 border border-rose-500/30 hover:bg-rose-500/10 text-rose-400 text-xs font-semibold flex items-center gap-1.5 ml-auto"
             >
               <RefreshCw className="w-3.5 h-3.5" /> Reset Data
             </button>

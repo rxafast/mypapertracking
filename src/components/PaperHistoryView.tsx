@@ -38,7 +38,7 @@ export const PaperHistoryView: React.FC<PaperHistoryViewProps> = ({ history, pap
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-800">
         <div className="flex items-center gap-3">
           <div className="p-3 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
             <History className="w-6 h-6" />
@@ -58,13 +58,13 @@ export const PaperHistoryView: React.FC<PaperHistoryViewProps> = ({ history, pap
             placeholder="Search history log..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full sm:w-64 pl-9 pr-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+            className="w-full sm:w-64 pl-9 pr-3 py-2 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
           />
         </div>
       </div>
 
       {/* History Timeline */}
-      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+      <div className="p-6 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-bold text-slate-100">Status Change Log</h3>
           <span className="text-xs font-mono text-slate-400">{sortedHistory.length} Total Events</span>
@@ -73,13 +73,13 @@ export const PaperHistoryView: React.FC<PaperHistoryViewProps> = ({ history, pap
         {sortedHistory.length === 0 ? (
           <div className="p-8 text-center text-slate-500 text-xs">No activity log records found.</div>
         ) : (
-          <div className="relative border-l border-slate-800 ml-4 space-y-6 pl-6 py-2">
+          <div className="relative border-l border-neutral-800 ml-4 space-y-6 pl-6 py-2">
             {sortedHistory.map((item) => (
               <div key={item.id} className="relative group">
                 {/* Timeline Dot */}
                 <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-indigo-600 border-2 border-slate-900 shadow-xs" />
 
-                <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 hover:border-slate-700 transition-colors">
+                <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-2 hover:border-slate-700 transition-colors">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-slate-100">
@@ -115,7 +115,7 @@ export const PaperHistoryView: React.FC<PaperHistoryViewProps> = ({ history, pap
                   )}
 
                   {item.remarks && (
-                    <p className="text-xs text-slate-400 italic bg-slate-900/60 p-2 rounded-lg border border-slate-800/60">
+                    <p className="text-xs text-slate-400 italic bg-neutral-900/50 backdrop-blur-md/60 p-2 rounded-lg border border-neutral-800/60">
                       "{item.remarks}"
                     </p>
                   )}

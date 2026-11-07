@@ -103,7 +103,6 @@ export default function App() {
     setNotifications(notifs);
   }, [papers, classes, settings.activeSession, settings.academicYear]);
 
-  // Update Paper Details
   const handleUpdatePaper = (
     paperId: string,
     newStatus: PaperStatus,
@@ -340,7 +339,7 @@ export default function App() {
               papers={papers}
               settings={settings}
               onNavigateTo={setActiveTab}
-              onQuickUpdateStatus={(id, status, remarks, date) => handleUpdatePaper(id, status, 'Midterm', remarks, date)}
+              onQuickUpdateStatus={(id, status, term) => handleUpdatePaper(id, status, term)}
             />
           )}
 

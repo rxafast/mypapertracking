@@ -69,7 +69,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-800">
         <div className="flex items-center gap-3">
           <div className="p-3 rounded-2xl bg-rose-500/10 text-rose-400 border border-rose-500/20">
             <Clock className="w-6 h-6" />
@@ -84,11 +84,11 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
 
         <div className="flex items-center gap-2">
           {pendingLabCount > 0 && (
-            <span className="px-3 py-1.5 rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-bold font-mono flex items-center gap-1.5">
+            <span className="px-3 py-1.5 rounded-2xl bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-bold font-mono flex items-center gap-1.5">
               <FlaskConical className="w-3.5 h-3.5" /> {pendingLabCount} Pending Lab Papers
             </span>
           )}
-          <span className="px-3 py-1.5 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold font-mono">
+          <span className="px-3 py-1.5 rounded-2xl bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold font-mono">
             {sortedPapers.length} Total Pending
           </span>
         </div>
@@ -98,7 +98,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
       {pendingLabCount > 0 && (
         <div className="p-4 rounded-2xl bg-purple-950/40 border border-purple-800/50 text-purple-200 text-xs flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-purple-500/20 text-purple-300">
+            <div className="p-2 rounded-2xl bg-purple-500/20 text-purple-300">
               <FlaskConical className="w-5 h-5" />
             </div>
             <div>
@@ -110,7 +110,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
           </div>
           <button
             onClick={() => setFilterCategory('Lab')}
-            className="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs shrink-0 transition-colors"
+            className="px-3.5 py-1.5 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs shrink-0 transition-colors"
           >
             Show Pending Lab Papers Only
           </button>
@@ -118,7 +118,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
       )}
 
       {/* Comprehensive Filter Toolbar (Requirement #5) */}
-      <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+      <div className="p-5 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-3">
         <div className="flex items-center justify-between text-xs font-bold text-slate-300">
           <span className="flex items-center gap-2">
             <Filter className="w-3.5 h-3.5 text-indigo-400" /> Multi-Attribute Filters
@@ -131,7 +131,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
-            className="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-purple-500/40 text-purple-300 font-semibold text-xs"
+            className="px-2.5 py-1.5 rounded-2xl bg-neutral-950 border border-purple-500/40 text-purple-300 font-semibold text-xs"
           >
             <option value="All">All Categories (Theory & Lab)</option>
             <option value="Theory">Theory Papers</option>
@@ -142,7 +142,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
           <select
             value={filterSession}
             onChange={(e) => setFilterSession(e.target.value)}
-            className="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+            className="px-2.5 py-1.5 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
           >
             <option value="All">All Sessions</option>
             <option value="Fall">Fall</option>
@@ -153,7 +153,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
           <select
             value={filterYear}
             onChange={(e) => setFilterYear(e.target.value)}
-            className="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+            className="px-2.5 py-1.5 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
           >
             <option value="All">All Years</option>
             {uniqueYears.map((y) => (
@@ -165,7 +165,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
           <select
             value={filterProgram}
             onChange={(e) => setFilterProgram(e.target.value)}
-            className="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+            className="px-2.5 py-1.5 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
           >
             <option value="All">All Programs</option>
             {uniquePrograms.map((p) => (
@@ -177,7 +177,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
           <select
             value={filterSemester}
             onChange={(e) => setFilterSemester(e.target.value)}
-            className="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+            className="px-2.5 py-1.5 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
           >
             <option value="All">All Semesters</option>
             {[1, 2, 3, 4, 5, 6, 7, 8].map((s) => (
@@ -189,7 +189,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
-            className="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+            className="px-2.5 py-1.5 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
           >
             <option value="All">All Exam Types</option>
             <option value="Midterm Theory">Midterm Theory</option>
@@ -201,7 +201,7 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="px-2.5 py-1.5 rounded-xl bg-slate-950 border border-indigo-500/40 text-indigo-300 font-semibold text-xs"
+            className="px-2.5 py-1.5 rounded-2xl bg-neutral-950 border border-indigo-500/40 text-indigo-300 font-semibold text-xs"
           >
             <option value="category">Sort: Lab Papers First</option>
             <option value="examDate">Sort: Exam Date</option>
@@ -212,10 +212,10 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
       </div>
 
       {/* Main Pending Table */}
-      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
-        <div className="overflow-x-auto rounded-xl border border-slate-800">
+      <div className="p-6 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-4">
+        <div className="overflow-x-auto rounded-2xl border border-neutral-800">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950 text-slate-400 border-b border-slate-800">
+            <thead className="bg-neutral-950 text-slate-400 border-b border-neutral-800">
               <tr>
                 <th className="p-3.5">Category & Status</th>
                 <th className="p-3.5">Program & Section</th>
