@@ -198,10 +198,11 @@ export default function App() {
 
   // Delete Paper
   const handleDeletePaperRequirement = (paperId: string) => {
+    StorageService.addDeletedPaperId(paperId);
     const updated = papers.filter((p) => p.id !== paperId);
     setPapers(updated);
     SupabaseService.savePapers(updated);
-    addToast('Paper requirement deleted', 'info');
+    addToast('Paper requirement deleted permanently', 'info');
   };
 
   // Class Management Handlers

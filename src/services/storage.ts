@@ -149,6 +149,20 @@ export class StorageService {
     localStorage.setItem(KEYS.NOTIFICATIONS, JSON.stringify(notifications));
   }
 
+  static getDeletedPaperIds(): Set<string> {
+    try {
+      const data = localStorage.getItem('rizwan_deleted_papers_v1');
+      if (data) return new Set(JSON.parse(data));
+    } catch (e) {}
+    return new Set();
+  }
+
+  static addDeletedPaperId(paperId: string): void {
+    const deleted = this.getDeletedPaperIds();
+    deleted.add(paperId);
+    localStorage.setItem('rizwan_deleted_papers_v1', JSON.stringify(Array.from(deleted)));
+  }
+
   /**
    * Automatic Paper Requirements Generator
    * Generates separate papers for Fall and Spring cohorts when students sit together in the same classroom section!
@@ -158,6 +172,7 @@ export class StorageService {
     existingPapers: ExaminationPaper[]
   ): { updatedPapers: ExaminationPaper[]; newRequirementsAdded: number } {
     const paperMap = new Map<string, ExaminationPaper>();
+    const deletedIds = this.getDeletedPaperIds();
 
     existingPapers.forEach((p) => paperMap.set(p.id, p));
     let newRequirementsAdded = 0;
@@ -183,7 +198,7 @@ export class StorageService {
 
         requiredExamSpecs.forEach((spec) => {
           const paperId = generatePaperId(c.id, sessionCohort, spec.examType);
-          if (!paperMap.has(paperId)) {
+          if (!paperMap.has(paperId) && !deletedIds.has(paperId)) {
             const newPaper: ExaminationPaper = {
               id: paperId,
               classId: c.id,
