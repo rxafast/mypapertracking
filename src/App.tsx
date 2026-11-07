@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { AppSettings, ClassRecord, ExaminationPaper, NotificationItem, PaperStatus, StatusHistoryEntry } from './types';
 import { StorageService } from './services/storage';
+import { SupabaseService } from './services/supabase';
 import { Sidebar, NavTab } from './components/Sidebar';
 import { TopHeader } from './components/TopHeader';
 import { DashboardView } from './components/DashboardView';
@@ -30,6 +31,16 @@ export default function App() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(!settings.isInitialSetupCompleted);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
+  // Load data from Supabase on mount
+  useEffect(() => {
+    SupabaseService.loadAllData().then((loaded) => {
+      setSettings(loaded.settings);
+      setClasses(loaded.classes);
+      setPapers(loaded.papers);
+      setHistory(loaded.history);
+    });
+  }, []);
+
   // Helper for Toasts
   const addToast = (message: string, type: 'success' | 'error' | 'info' = 'success') => {
     const id = Date.now().toString() + Math.random().toString().slice(2, 5);
@@ -45,6 +56,7 @@ export default function App() {
     const { updatedPapers } = StorageService.ensurePaperRequirementsForClasses(classes, papers);
     if (updatedPapers.length !== papers.length) {
       setPapers(updatedPapers);
+      SupabaseService.savePapers(updatedPapers);
     }
   }, [classes]);
 
@@ -118,7 +130,7 @@ export default function App() {
 
     const newPapers = papers.map((p) => (p.id === paperId ? updatedPaper : p));
     setPapers(newPapers);
-    StorageService.savePapers(newPapers);
+    SupabaseService.savePapers(newPapers);
 
     // Audit History Entry
     const newHistoryItem: StatusHistoryEntry = {
@@ -133,7 +145,7 @@ export default function App() {
 
     const newHistory = [newHistoryItem, ...history];
     setHistory(newHistory);
-    StorageService.saveHistory(newHistory);
+    SupabaseService.saveHistory(newHistory);
 
     addToast(`Updated ${paper.programName} paper to "${newStatus}"`, 'success');
 
@@ -151,7 +163,7 @@ export default function App() {
         spread: 70,
         origin: { y: 0.6 },
       });
-      addToast('🎉 Outstanding! All required examination papers are prepared!', 'success');
+      addToast("🎉 Outstanding! All required examination papers are prepared for Rizwan's portal!", 'success');
     }
   };
 
@@ -172,7 +184,7 @@ export default function App() {
       return p;
     });
     setPapers(newPapers);
-    StorageService.savePapers(newPapers);
+    SupabaseService.savePapers(newPapers);
     addToast(`Attached file "${fileName}"`, 'success');
   };
 
@@ -180,7 +192,7 @@ export default function App() {
   const handleAddCustomPaperRequirement = (newPaper: ExaminationPaper) => {
     const updated = [newPaper, ...papers];
     setPapers(updated);
-    StorageService.savePapers(updated);
+    SupabaseService.savePapers(updated);
     addToast(`Added paper requirement for ${newPaper.programName}`, 'success');
   };
 
@@ -188,7 +200,7 @@ export default function App() {
   const handleDeletePaperRequirement = (paperId: string) => {
     const updated = papers.filter((p) => p.id !== paperId);
     setPapers(updated);
-    StorageService.savePapers(updated);
+    SupabaseService.savePapers(updated);
     addToast('Paper requirement deleted', 'info');
   };
 
@@ -196,10 +208,11 @@ export default function App() {
   const handleAddClass = (newClass: ClassRecord) => {
     const updatedClasses = [newClass, ...classes];
     setClasses(updatedClasses);
-    StorageService.saveClasses(updatedClasses);
+    SupabaseService.saveClasses(updatedClasses);
 
     const { updatedPapers } = StorageService.ensurePaperRequirementsForClasses(updatedClasses, papers);
     setPapers(updatedPapers);
+    SupabaseService.savePapers(updatedPapers);
 
     addToast(`Added class ${newClass.programName} (Sec ${newClass.section})`, 'success');
   };
@@ -207,7 +220,7 @@ export default function App() {
   const handleUpdateClass = (updatedClass: ClassRecord) => {
     const updatedClasses = classes.map((c) => (c.id === updatedClass.id ? updatedClass : c));
     setClasses(updatedClasses);
-    StorageService.saveClasses(updatedClasses);
+    SupabaseService.saveClasses(updatedClasses);
     addToast(`Updated class ${updatedClass.programName}`, 'success');
   };
 
@@ -216,26 +229,28 @@ export default function App() {
     const updatedPapers = papers.filter((p) => p.classId !== classId);
     setClasses(updatedClasses);
     setPapers(updatedPapers);
-    StorageService.saveClasses(updatedClasses);
-    StorageService.savePapers(updatedPapers);
+    SupabaseService.saveClasses(updatedClasses);
+    SupabaseService.savePapers(updatedPapers);
     addToast('Class record and associated papers removed', 'info');
   };
 
   // Excel Import Handler
   const handleImportCompleted = (newClasses: ClassRecord[]) => {
     setClasses(newClasses);
+    SupabaseService.saveClasses(newClasses);
 
     const updatedPapers = StorageService.getPapers();
     setPapers(updatedPapers);
+    SupabaseService.savePapers(updatedPapers);
 
-    addToast('Excel import complete! Classes & paper requirements updated.', 'success');
+    addToast('Excel import complete! Classes & paper requirements updated in Supabase.', 'success');
   };
 
   // Settings & Reset
   const handleSaveSettings = (newSettings: AppSettings) => {
     setSettings(newSettings);
-    StorageService.saveSettings(newSettings);
-    addToast('Configuration saved', 'success');
+    SupabaseService.saveSettings(newSettings);
+    addToast('Portal configuration saved to Supabase', 'success');
   };
 
   const handleResetData = () => {
@@ -244,16 +259,33 @@ export default function App() {
     setClasses(res.classes);
     setPapers(res.papers);
     setHistory(res.history);
+
+    SupabaseService.saveSettings(res.settings);
+    SupabaseService.saveClasses(res.classes);
+    SupabaseService.savePapers(res.papers);
+    SupabaseService.saveHistory(res.history);
+
     addToast('Reset to default sample dataset', 'info');
   };
 
   const handleImportBackup = (jsonStr: string) => {
     const ok = StorageService.importFullBackup(jsonStr);
     if (ok) {
-      setSettings(StorageService.getSettings());
-      setClasses(StorageService.getClasses());
-      setPapers(StorageService.getPapers());
-      setHistory(StorageService.getHistory());
+      const s = StorageService.getSettings();
+      const c = StorageService.getClasses();
+      const p = StorageService.getPapers();
+      const h = StorageService.getHistory();
+
+      setSettings(s);
+      setClasses(c);
+      setPapers(p);
+      setHistory(h);
+
+      SupabaseService.saveSettings(s);
+      SupabaseService.saveClasses(c);
+      SupabaseService.savePapers(p);
+      SupabaseService.saveHistory(h);
+
       addToast('Backup restored successfully!', 'success');
     } else {
       addToast('Failed to parse backup JSON file', 'error');
@@ -263,7 +295,6 @@ export default function App() {
   // Count active pending papers for sidebar badge
   const pendingCount = papers.filter(
     (p) =>
-      p.academicSession === settings.activeSession &&
       p.academicYear === settings.academicYear &&
       (p.status === 'Pending' || p.status === 'In Progress')
   ).length;
@@ -348,7 +379,7 @@ export default function App() {
                 onClick={() => setIsSettingsOpen(true)}
                 className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs"
               >
-                Open System Configuration Panel
+                Open Portal Configuration Panel
               </button>
             </div>
           )}
@@ -361,7 +392,7 @@ export default function App() {
         onClose={() => setIsSearchOpen(false)}
         classes={classes}
         papers={papers}
-        onSelectPaper={(paper) => {
+        onSelectPaper={() => {
           setActiveTab('papers');
         }}
       />
