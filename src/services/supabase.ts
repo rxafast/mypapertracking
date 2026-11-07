@@ -119,4 +119,20 @@ export class SupabaseService {
       console.error('Supabase saveHistory error:', e);
     }
   }
+
+  static async deletePaper(paperId: string): Promise<void> {
+    try {
+      await supabase.from('papers').delete().eq('id', paperId);
+    } catch (e) {
+      console.error('Supabase deletePaper error:', e);
+    }
+  }
+
+  static async deleteClass(classId: string): Promise<void> {
+    try {
+      await supabase.from('classes').delete().eq('id', classId);
+    } catch (e) {
+      console.error('Supabase deleteClass error:', e);
+    }
+  }
 }

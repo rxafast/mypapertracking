@@ -199,6 +199,7 @@ export default function App() {
   // Delete Paper
   const handleDeletePaperRequirement = (paperId: string) => {
     StorageService.addDeletedPaperId(paperId);
+    SupabaseService.deletePaper(paperId);
     const updated = papers.filter((p) => p.id !== paperId);
     setPapers(updated);
     SupabaseService.savePapers(updated);
@@ -226,6 +227,7 @@ export default function App() {
   };
 
   const handleDeleteClass = (classId: string) => {
+    SupabaseService.deleteClass(classId);
     const updatedClasses = classes.filter((c) => c.id !== classId);
     const updatedPapers = papers.filter((p) => p.classId !== classId);
     setClasses(updatedClasses);
