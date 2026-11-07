@@ -225,7 +225,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
               ) : (
                 filteredClasses.map((c) => (
                   <tr key={c.id} className="hover:bg-slate-800/40 transition-colors">
-                    <td className="p-3.5 font-bold text-slate-100">
+                    <td className="p-3.5 font-bold text-slate-100 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <span>{c.programName}</span>
                         {c.isSample && (
@@ -236,7 +236,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                       </div>
                     </td>
                     <td className="p-3.5 font-mono">
-                      <span className="px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-slate-300">
+                      <span className="px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-slate-300 whitespace-nowrap">
                         Sem {c.semester} - Sec {c.section}
                       </span>
                     </td>
