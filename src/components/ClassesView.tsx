@@ -240,7 +240,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                         Sem {c.semester} - Sec {c.section}
                       </span>
                     </td>
-                    <td className="p-3.5 font-mono text-indigo-300">
+                    <td className="p-3.5 font-mono text-indigo-300 whitespace-nowrap">
                       {c.academicSession} {c.academicYear}
                     </td>
                     <td className="p-3.5">
