@@ -4,7 +4,7 @@ import { AcademicSession, ExaminationPaper, ExaminationType, PaperStatus } from 
 
 interface PendingPapersViewProps {
   papers: ExaminationPaper[];
-  onUpdatePaperStatus: (paperId: string, newStatus: PaperStatus) => void;
+  onUpdatePaperStatus: (paperId: string, newStatus: PaperStatus, term: 'Midterm' | 'Final') => void;
 }
 
 export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, onUpdatePaperStatus }) => {
@@ -284,14 +284,14 @@ export const PendingPapersView: React.FC<PendingPapersViewProps> = ({ papers, on
                       <div className="flex items-center justify-end gap-2">
                         {paper.status === 'Pending' && (
                           <button
-                            onClick={() => onUpdatePaperStatus(paper.id, 'In Progress')}
+                            onClick={() => onUpdatePaperStatus(paper.id, 'In Progress', paper.term)}
                             className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-semibold border border-slate-700"
                           >
                             Start Draft
                           </button>
                         )}
                         <button
-                          onClick={() => onUpdatePaperStatus(paper.id, 'Created')}
+                          onClick={() => onUpdatePaperStatus(paper.id, 'Created', paper.term)}
                           className="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-xs flex items-center gap-1"
                         >
                           <Check className="w-3.5 h-3.5" /> Mark Created

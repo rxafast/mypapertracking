@@ -22,7 +22,7 @@ interface DashboardViewProps {
   papers: ExaminationPaper[];
   settings: AppSettings;
   onNavigateTo: (tab: any) => void;
-  onQuickUpdateStatus: (paperId: string, newStatus: PaperStatus) => void;
+  onQuickUpdateStatus: (paperId: string, newStatus: PaperStatus, term: 'Midterm' | 'Final') => void;
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({
@@ -375,7 +375,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
                   <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
                     <button
-                      onClick={() => onQuickUpdateStatus(paper.id, 'In Progress')}
+                      onClick={() => onQuickUpdateStatus(paper.id, 'In Progress', paper.term)}
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors border ${
                         paper.status === 'In Progress'
                           ? 'bg-indigo-600 text-white border-indigo-500'
@@ -385,7 +385,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                       In Progress
                     </button>
                     <button
-                      onClick={() => onQuickUpdateStatus(paper.id, 'Created')}
+                      onClick={() => onQuickUpdateStatus(paper.id, 'Created', paper.term)}
                       className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-500 transition-colors flex items-center gap-1 shadow-sm"
                     >
                       <Check className="w-3.5 h-3.5" />

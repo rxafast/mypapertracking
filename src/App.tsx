@@ -103,10 +103,11 @@ export default function App() {
     setNotifications(notifs);
   }, [papers, classes, settings.activeSession, settings.academicYear]);
 
-  // Status Change Handler with History Audit Log & Confetti
-  const handleUpdatePaperStatus = (
+  // Update Paper Details
+  const handleUpdatePaper = (
     paperId: string,
     newStatus: PaperStatus,
+    newTerm: 'Midterm' | 'Final',
     remarks?: string,
     examDate?: string
   ) => {
@@ -119,6 +120,7 @@ export default function App() {
     const updatedPaper: ExaminationPaper = {
       ...paper,
       status: newStatus,
+      term: newTerm,
       creationDate:
         newStatus === 'Created' || newStatus === 'Reviewed' || newStatus === 'Finalized'
           ? paper.creationDate || todayStr
@@ -163,7 +165,7 @@ export default function App() {
         spread: 70,
         origin: { y: 0.6 },
       });
-      addToast("🎉 Outstanding! All required examination papers are prepared for Rizwan's portal!", 'success');
+      addToast("🎉 Outstanding! All required examination papers are prepared!", 'success');
     }
   };
 
@@ -338,7 +340,7 @@ export default function App() {
               papers={papers}
               settings={settings}
               onNavigateTo={setActiveTab}
-              onQuickUpdateStatus={handleUpdatePaperStatus}
+              onQuickUpdateStatus={(id, status, remarks, date) => handleUpdatePaper(id, status, 'Midterm', remarks, date)}
             />
           )}
 
@@ -358,7 +360,7 @@ export default function App() {
           {activeTab === 'papers' && (
             <PaperManagementView
               papers={papers}
-              onUpdatePaperStatus={handleUpdatePaperStatus}
+              onUpdatePaperStatus={(id, status, term, remarks, date) => handleUpdatePaper(id, status, term, remarks, date)}
               onSaveAttachment={handleSaveAttachment}
               onAddCustomPaperRequirement={handleAddCustomPaperRequirement}
               onDeletePaperRequirement={handleDeletePaperRequirement}
@@ -366,7 +368,7 @@ export default function App() {
           )}
 
           {activeTab === 'pending' && (
-            <PendingPapersView papers={papers} onUpdatePaperStatus={handleUpdatePaperStatus} />
+            <PendingPapersView papers={papers} onUpdatePaperStatus={(id, status, term) => handleUpdatePaper(id, status, term)} />
           )}
 
           {activeTab === 'history' && <PaperHistoryView history={history} papers={papers} />}

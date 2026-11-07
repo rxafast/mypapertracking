@@ -23,7 +23,7 @@ import { AcademicSession, ExaminationPaper, ExaminationType, PaperCategory, Pape
 
 interface PaperManagementViewProps {
   papers: ExaminationPaper[];
-  onUpdatePaperStatus: (paperId: string, newStatus: PaperStatus, remarks?: string, examDate?: string) => void;
+  onUpdatePaperStatus: (paperId: string, newStatus: PaperStatus, term: 'Midterm' | 'Final', remarks?: string, examDate?: string) => void;
   onSaveAttachment: (paperId: string, fileName: string, fileUrl?: string) => void;
   onAddCustomPaperRequirement: (newPaper: ExaminationPaper) => void;
   onDeletePaperRequirement: (paperId: string) => void;
@@ -49,6 +49,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
   // Remarks / Date Modal
   const [editingPaper, setEditingPaper] = useState<ExaminationPaper | null>(null);
   const [editStatus, setEditStatus] = useState<PaperStatus>('Pending');
+  const [editTerm, setEditTerm] = useState<'Midterm' | 'Final'>('Midterm');
   const [editRemarks, setEditRemarks] = useState('');
   const [editExamDate, setEditExamDate] = useState('');
 
@@ -85,6 +86,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
   const handleOpenEdit = (paper: ExaminationPaper) => {
     setEditingPaper(paper);
     setEditStatus(paper.status);
+    setEditTerm(paper.term || 'Midterm');
     setEditRemarks(paper.remarks || '');
     setEditExamDate(paper.examinationDate || '');
   };
@@ -92,7 +94,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
   const handleSaveEdit = (e: React.FormEvent) => {
     e.preventDefault();
     if (editingPaper) {
-      onUpdatePaperStatus(editingPaper.id, editStatus, editRemarks, editExamDate);
+      onUpdatePaperStatus(editingPaper.id, editStatus, editTerm, editRemarks, editExamDate);
       setEditingPaper(null);
     }
   };
@@ -410,6 +412,18 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                   <option value="Created">Created</option>
                   <option value="Reviewed">Reviewed</option>
                   <option value="Finalized">Finalized</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">Paper Term</label>
+                <select
+                  value={editTerm}
+                  onChange={(e) => setEditTerm(e.target.value as 'Midterm' | 'Final')}
+                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                >
+                  <option value="Midterm">Midterm</option>
+                  <option value="Final">Final</option>
                 </select>
               </div>
 
