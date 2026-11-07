@@ -22,7 +22,7 @@ export class SupabaseService {
     }
   }
 
-  // Sync / Load data from Supabase with LocalStorage fallback
+  // Sync / Load data from Supabase with LocalStorage fallback & deleted paper filtering
   static async loadAllData(): Promise<{
     settings: AppSettings;
     classes: ClassRecord[];
@@ -58,10 +58,21 @@ export class SupabaseService {
           ? classesRes.data.map((row: any) => row.payload)
           : StorageService.getClasses();
 
-      const papers =
+      const rawPapers =
         papersRes.data && papersRes.data.length > 0
           ? papersRes.data.map((row: any) => row.payload)
           : StorageService.getPapers();
+
+      const deletedIds = StorageService.getDeletedPaperIds();
+
+      // Filter out any locally deleted papers and purge them from Supabase if still present
+      const papers = rawPapers.filter((p: ExaminationPaper) => {
+        if (deletedIds.has(p.id)) {
+          supabase.from('papers').delete().eq('id', p.id).then();
+          return false;
+        }
+        return true;
+      });
 
       const history =
         historyRes.data && historyRes.data.length > 0
@@ -121,6 +132,7 @@ export class SupabaseService {
   }
 
   static async deletePaper(paperId: string): Promise<void> {
+    StorageService.addDeletedPaperId(paperId);
     try {
       await supabase.from('papers').delete().eq('id', paperId);
     } catch (e) {
