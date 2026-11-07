@@ -249,7 +249,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                     </td>
                     <td className="p-3.5">
                       <span
-                        className={`px-2.5 py-1 rounded-md text-xs font-bold font-mono border ${
+                        className={`px-2.5 py-1 rounded-md text-xs font-bold font-mono border whitespace-nowrap ${
                           c.subjectType === 'Theory + Lab'
                             ? 'bg-purple-500/10 text-purple-300 border-purple-500/30'
                             : 'bg-indigo-500/10 text-indigo-300 border-indigo-500/30'
