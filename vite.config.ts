@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: './', // Ensures relative asset paths so app loads cleanly on GitHub Pages, subfolders & static hosts
+    base: '/mypapertracking/', // Exact repository subpath for GitHub Pages at https://rxafast.github.io/mypapertracking/
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
