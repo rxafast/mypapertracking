@@ -303,7 +303,7 @@ export default function App() {
   ).length;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans antialiased">
       {/* Sidebar Navigation */}
       <Sidebar
         activeTab={activeTab}

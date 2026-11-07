@@ -35,134 +35,120 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   };
 
   return (
-    <header className="h-18 bg-slate-900/95 border-b border-slate-800/80 sticky top-0 z-30 backdrop-blur-md px-4 sm:px-6 flex items-center justify-between gap-4">
+    <header className="h-20 bg-neutral-900/50 backdrop-blur-xl border-b border-neutral-800 sticky top-0 z-30 px-4 sm:px-8 flex items-center justify-between gap-4">
       {/* Left: Mobile Menu Trigger & Personal Portal Title */}
       <div className="flex items-center gap-3 min-w-0">
         <button
           onClick={onToggleMobileSidebar}
-          className="lg:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/70 transition-colors"
+          className="lg:hidden p-2 rounded-full text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
           aria-label="Toggle menu"
         >
           <Menu className="w-5 h-5" />
         </button>
 
         <div className="min-w-0">
-          <h2 className="text-sm sm:text-base font-bold text-slate-100 truncate tracking-tight">
-            Rizwan's Personal Class Paper Portal
+          <h2 className="text-base font-bold text-neutral-100 truncate tracking-tight">
+            Paper Portal
           </h2>
-          <div className="flex items-center gap-2 text-xs text-slate-400">
-            <span className="hidden sm:inline text-indigo-400 font-medium">ICT & Course Paper Tracker</span>
-            <span className="hidden sm:inline text-slate-600">·</span>
-            <span className="text-slate-300 font-medium truncate">{settings.primarySubject}</span>
+          <div className="flex items-center gap-2 text-xs text-neutral-500">
+            <span className="text-neutral-400 font-medium truncate">{settings.primarySubject}</span>
           </div>
         </div>
       </div>
 
       {/* Middle/Right Controls */}
-      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+      <div className="flex items-center gap-3 shrink-0">
         {/* Quick Academic Session & Year Filter Pill Toggles */}
-        <div className="hidden md:flex items-center gap-1.5 p-1 bg-slate-950 rounded-xl border border-slate-800/80 text-xs">
+        <div className="hidden md:flex items-center gap-1 p-1 bg-neutral-950/50 rounded-full border border-neutral-800 text-xs">
           <button
             onClick={() => handleSessionChange('Fall')}
-            className={`px-2.5 py-1 rounded-lg font-medium transition-all ${
+            className={`px-4 py-1.5 rounded-full font-medium transition-all ${
               settings.activeSession === 'Fall'
-                ? 'bg-indigo-600 text-white shadow-xs'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-neutral-800 text-white shadow-inner'
+                : 'text-neutral-400 hover:text-neutral-200'
             }`}
           >
-            Fall Cohort
+            Fall
           </button>
           <button
             onClick={() => handleSessionChange('Spring')}
-            className={`px-2.5 py-1 rounded-lg font-medium transition-all ${
+            className={`px-4 py-1.5 rounded-full font-medium transition-all ${
               settings.activeSession === 'Spring'
-                ? 'bg-indigo-600 text-white shadow-xs'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-neutral-800 text-white shadow-inner'
+                : 'text-neutral-400 hover:text-neutral-200'
             }`}
           >
-            Spring Cohort
+            Spring
           </button>
-          <div className="h-3.5 w-px bg-slate-800 my-auto mx-0.5" />
+          <div className="h-4 w-px bg-neutral-800" />
           <select
             value={settings.academicYear}
             onChange={(e) => handleYearChange(e.target.value)}
-            className="bg-transparent text-slate-200 font-mono font-medium px-2 py-0.5 rounded cursor-pointer focus:outline-none"
+            className="bg-transparent text-neutral-300 font-mono font-medium px-3 rounded-full cursor-pointer focus:outline-none"
           >
-            <option value="2025" className="bg-slate-900">2025</option>
-            <option value="2026" className="bg-slate-900">2026</option>
-            <option value="2027" className="bg-slate-900">2027</option>
+            <option value="2025" className="bg-neutral-900">2025</option>
+            <option value="2026" className="bg-neutral-900">2026</option>
+            <option value="2027" className="bg-neutral-900">2027</option>
           </select>
         </div>
 
         {/* Global Search Button */}
         <button
           onClick={onOpenSearch}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-400 hover:text-slate-100 hover:border-slate-700 transition-all text-xs"
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-neutral-100 hover:border-neutral-700 transition-all text-xs"
           title="Search programs, subjects, papers"
         >
-          <Search className="w-3.5 h-3.5 text-slate-400" />
-          <span className="hidden sm:inline">Search...</span>
-          <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-slate-800 text-slate-400 rounded font-mono">
-            ⌘K
-          </kbd>
+          <Search className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">Search</span>
         </button>
 
         {/* Notifications Bell Dropdown */}
         <div className="relative">
           <button
             onClick={() => setIsNotifOpen(!isNotifOpen)}
-            className="relative p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors"
+            className="relative p-2.5 rounded-full text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
             title="Notifications"
           >
             <Bell className="w-4 h-4" />
             {unreadCount > 0 && (
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+              <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-indigo-500" />
             )}
           </button>
 
           {isNotifOpen && (
-            <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl z-50 p-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-bold text-slate-100">Paper Alerts & Notifications</h3>
-                  {unreadCount > 0 && (
-                    <span className="px-2 py-0.5 text-[10px] font-bold bg-rose-500/20 text-rose-300 rounded-full font-mono">
-                      {unreadCount} New
-                    </span>
-                  )}
-                </div>
+            <div className="absolute right-0 mt-3 w-80 sm:w-96 rounded-3xl bg-neutral-900 border border-neutral-800 shadow-2xl z-50 p-4">
+              <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
+                <h3 className="text-sm font-bold text-neutral-100">Alerts</h3>
                 {notifications.length > 0 && (
                   <button
                     onClick={onClearNotifications}
-                    className="text-xs text-slate-400 hover:text-slate-200"
+                    className="text-xs text-neutral-500 hover:text-neutral-300"
                   >
-                    Clear All
+                    Clear
                   </button>
                 )}
               </div>
 
               <div className="max-h-72 overflow-y-auto py-2 space-y-2">
                 {notifications.length === 0 ? (
-                  <div className="text-center py-6 text-slate-500 text-xs">
-                    <CheckCircle2 className="w-8 h-8 mx-auto mb-2 opacity-50 text-emerald-400" />
-                    No pending alerts! All papers are up to date.
+                  <div className="text-center py-6 text-neutral-600 text-xs">
+                    No pending alerts!
                   </div>
                 ) : (
                   notifications.map((n) => (
                     <div
                       key={n.id}
                       onClick={() => onMarkNotificationRead(n.id)}
-                      className={`p-3 rounded-xl border text-xs cursor-pointer transition-colors ${
+                      className={`p-4 rounded-2xl border text-xs cursor-pointer transition-colors ${
                         n.read
-                          ? 'bg-slate-950/40 border-slate-800/50 text-slate-400'
-                          : 'bg-slate-800/60 border-indigo-500/30 text-slate-200 font-medium'
+                          ? 'bg-neutral-950/50 border-neutral-800 text-neutral-500'
+                          : 'bg-neutral-800 border-neutral-700 text-neutral-200'
                       }`}
                     >
                       <div className="flex items-start justify-between gap-2">
-                        <span className="font-semibold text-slate-100">{n.title}</span>
-                        <span className="text-[10px] text-slate-500 font-mono">{n.timestamp}</span>
+                        <span className="font-semibold text-neutral-100">{n.title}</span>
                       </div>
-                      <p className="mt-1 text-slate-300 leading-relaxed">{n.message}</p>
+                      <p className="mt-1 text-neutral-400 leading-relaxed">{n.message}</p>
                     </div>
                   ))
                 )}
@@ -171,10 +157,10 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           )}
         </div>
 
-        {/* Quick Setup / Settings Icon Button */}
+        {/* Settings Button */}
         <button
           onClick={onOpenSettings}
-          className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/80 transition-colors"
+          className="p-2.5 rounded-full text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
           title="Portal Preferences"
         >
           <Settings className="w-4 h-4" />
