@@ -66,13 +66,18 @@ export class SupabaseService {
       const deletedIds = StorageService.getDeletedPaperIds();
 
       // Filter out any locally deleted papers and purge them from Supabase if still present
-      const papers = rawPapers.filter((p: ExaminationPaper) => {
-        if (deletedIds.has(p.id)) {
-          supabase.from('papers').delete().eq('id', p.id).then();
-          return false;
-        }
-        return true;
-      });
+      const papers = rawPapers
+        .map((p: ExaminationPaper) => ({
+          ...p,
+          term: p.term || (p.examinationType.toLowerCase().includes('midterm') ? 'Midterm' : 'Final'),
+        }))
+        .filter((p: ExaminationPaper) => {
+          if (deletedIds.has(p.id)) {
+            supabase.from('papers').delete().eq('id', p.id).then();
+            return false;
+          }
+          return true;
+        });
 
       const history =
         historyRes.data && historyRes.data.length > 0

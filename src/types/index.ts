@@ -65,6 +65,7 @@ export interface ExaminationPaper {
   subjectType: SubjectType;
   examinationType: ExaminationType;
   paperCategory: PaperCategory; // "Theory" or "Lab"
+  term: 'Midterm' | 'Final'; // Categorization for reports
   status: PaperStatus;
   creationDate?: string; // Auto-set when marked as Created
   examinationDate?: string; // Optional target examination date

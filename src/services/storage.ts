@@ -215,6 +215,7 @@ export class StorageService {
               subjectType: subjectType,
               examinationType: spec.examType,
               paperCategory: spec.category,
+              term: spec.examType.toLowerCase().includes('midterm') ? 'Midterm' : 'Final',
               status: 'Pending',
               lastUpdatedDate: new Date().toISOString().split('T')[0],
               remarks: `Separate paper auto-generated for ${c.programName} (${sessionCohort} Cohort).`,
