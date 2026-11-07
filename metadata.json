@@ -2,5 +2,7 @@
   "name": "University Paper Preparation & Tracking Management System",
   "description": "Centralized examination paper tracking and preparation system for university lecturers across degree programs, academic sessions, and semesters.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
