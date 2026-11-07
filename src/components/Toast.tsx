@@ -32,16 +32,16 @@ const ToastItem: React.FC<{ toast: ToastMessage; onDismiss: (id: string) => void
 
   const bgStyles =
     toast.type === 'success'
-      ? 'bg-slate-900 border-emerald-500/40 text-emerald-300'
+      ? 'bg-neutral-900/50 backdrop-blur-md border-emerald-500/40 text-emerald-300'
       : toast.type === 'error'
-      ? 'bg-slate-900 border-rose-500/40 text-rose-300'
-      : 'bg-slate-900 border-indigo-500/40 text-indigo-300';
+      ? 'bg-neutral-900/50 backdrop-blur-md border-rose-500/40 text-rose-300'
+      : 'bg-neutral-900/50 backdrop-blur-md border-indigo-500/40 text-indigo-300';
 
   const Icon = toast.type === 'success' ? CheckCircle2 : toast.type === 'error' ? AlertCircle : Info;
 
   return (
     <div
-      className={`pointer-events-auto flex items-center justify-between gap-3 p-3.5 rounded-xl border shadow-xl backdrop-blur-md transition-all duration-300 ${bgStyles}`}
+      className={`pointer-events-auto flex items-center justify-between gap-3 p-3.5 rounded-2xl border shadow-xl backdrop-blur-md transition-all duration-300 ${bgStyles}`}
     >
       <div className="flex items-center gap-2.5 min-w-0">
         <Icon className="w-5 h-5 shrink-0" />

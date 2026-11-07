@@ -128,7 +128,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Header & Action Toolbar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-800">
         <div>
           <h1 className="text-2xl font-bold text-slate-100">Program & Class Management</h1>
           <p className="text-xs text-slate-400 mt-1">
@@ -138,14 +138,14 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
 
         <button
           onClick={openAddModal}
-          className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/20 flex items-center gap-2 self-start sm:self-center shrink-0"
+          className="px-4 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/20 flex items-center gap-2 self-start sm:self-center shrink-0"
         >
           <Plus className="w-4 h-4" /> Add New Class Section
         </button>
       </div>
 
       {/* Search & Filter Toolbar */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-slate-900 border border-slate-800">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800">
         <div className="relative">
           <Search className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
           <input
@@ -153,7 +153,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
             placeholder="Search program, subject..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+            className="w-full pl-9 pr-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
           />
         </div>
 
@@ -161,7 +161,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
           <select
             value={filterProgram}
             onChange={(e) => setFilterProgram(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+            className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
           >
             <option value="All">All Programs ({uniquePrograms.length})</option>
             {uniquePrograms.map((prog) => (
@@ -174,7 +174,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
           <select
             value={filterSession}
             onChange={(e) => setFilterSession(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+            className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
           >
             <option value="All">All Academic Sessions</option>
             <option value="Fall">Fall Session</option>
@@ -186,7 +186,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
           <select
             value={filterSubjectType}
             onChange={(e) => setFilterSubjectType(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+            className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
           >
             <option value="All">All Subject Types</option>
             <option value="Theory Only">Theory Only</option>
@@ -196,15 +196,15 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
       </div>
 
       {/* Classes Table View */}
-      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+      <div className="p-6 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-bold text-slate-100">Configured Class Sections</h3>
           <span className="text-xs font-mono text-slate-400">{filteredClasses.length} Total Records</span>
         </div>
 
-        <div className="overflow-x-auto rounded-xl border border-slate-800">
+        <div className="overflow-x-auto rounded-2xl border border-neutral-800">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950 text-slate-400 border-b border-slate-800">
+            <thead className="bg-neutral-950 text-slate-400 border-b border-neutral-800">
               <tr>
                 <th className="p-3.5">Program Name</th>
                 <th className="p-3.5">Sem & Sec</th>
@@ -236,7 +236,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                       </div>
                     </td>
                     <td className="p-3.5 font-mono">
-                      <span className="px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-slate-300 whitespace-nowrap">
+                      <span className="px-2 py-0.5 rounded bg-neutral-950 border border-neutral-800 text-slate-300 whitespace-nowrap">
                         Sem {c.semester} - Sec {c.section}
                       </span>
                     </td>
@@ -292,9 +292,9 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
 
       {/* Add / Edit Class Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
-          <div className="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-xs">
+          <div className="w-full max-w-lg bg-neutral-900/50 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
               <h3 className="text-base font-bold text-slate-100">
                 {editingClass ? 'Edit Class & Subject Type' : 'Add New Class Section'}
               </h3>
@@ -315,12 +315,12 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                   value={formProgram}
                   onChange={(e) => setFormProgram(e.target.value)}
                   placeholder="e.g. BS Computer Science"
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
                 />
               </div>
 
               {/* Subject Type Configuration Selector (Requirement #1) */}
-              <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+              <div className="p-3.5 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-2">
                 <label className="text-xs font-bold text-slate-200 block">Subject Type Configuration *</label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
@@ -329,7 +329,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                     className={`p-2.5 rounded-lg border text-xs font-semibold text-left transition-all ${
                       formSubjectType === 'Theory Only'
                         ? 'bg-indigo-600 text-white border-indigo-500 shadow-sm'
-                        : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+                        : 'bg-neutral-900/50 backdrop-blur-md text-slate-400 border-neutral-800 hover:text-slate-200'
                     }`}
                   >
                     <div className="font-bold flex items-center gap-1.5">
@@ -346,7 +346,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                     className={`p-2.5 rounded-lg border text-xs font-semibold text-left transition-all ${
                       formSubjectType === 'Theory + Lab'
                         ? 'bg-purple-600 text-white border-purple-500 shadow-sm'
-                        : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-slate-200'
+                        : 'bg-neutral-900/50 backdrop-blur-md text-slate-400 border-neutral-800 hover:text-slate-200'
                     }`}
                   >
                     <div className="font-bold flex items-center gap-1.5">
@@ -365,7 +365,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                   <select
                     value={formSession}
                     onChange={(e) => setFormSession(e.target.value as AcademicSession)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                   >
                     <option value="Fall">Fall</option>
                     <option value="Spring">Spring</option>
@@ -379,7 +379,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                     required
                     value={formYear}
                     onChange={(e) => setFormYear(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-mono"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-mono"
                   />
                 </div>
               </div>
@@ -394,7 +394,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                     required
                     value={formSemester}
                     onChange={(e) => setFormSemester(parseInt(e.target.value, 10) || 1)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-mono"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-mono"
                   />
                 </div>
 
@@ -406,7 +406,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                     value={formSection}
                     onChange={(e) => setFormSection(e.target.value.toUpperCase())}
                     placeholder="A, B..."
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-mono"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-mono"
                   />
                 </div>
 
@@ -417,7 +417,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                     min={1}
                     value={formStudents}
                     onChange={(e) => setFormStudents(parseInt(e.target.value, 10) || 1)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-mono"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-mono"
                   />
                 </div>
               </div>
@@ -430,7 +430,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                     required
                     value={formSubject}
                     onChange={(e) => setFormSubject(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                   />
                 </div>
 
@@ -440,22 +440,22 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                     type="text"
                     value={formSubjectCode}
                     onChange={(e) => setFormSubjectCode(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-mono"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-mono"
                   />
                 </div>
               </div>
 
-              <div className="pt-2 flex justify-end gap-3 border-t border-slate-800">
+              <div className="pt-2 flex justify-end gap-3 border-t border-neutral-800">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
+                  className="px-4 py-2 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/20"
+                  className="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/20"
                 >
                   {editingClass ? 'Save Changes' : 'Create Class & Generate Papers'}
                 </button>
@@ -467,8 +467,8 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
 
       {/* Delete Confirmation Modal */}
       {deletingId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
-          <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-xs">
+          <div className="w-full max-w-md bg-neutral-900/50 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 shadow-2xl space-y-4">
             <div className="flex items-center gap-3 text-rose-400">
               <AlertTriangle className="w-6 h-6 shrink-0" />
               <h3 className="text-base font-bold text-slate-100">Confirm Class Deletion</h3>
@@ -479,7 +479,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
             <div className="flex justify-end gap-3 pt-2">
               <button
                 onClick={() => setDeletingId(null)}
-                className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold"
+                className="px-4 py-2 rounded-2xl bg-slate-800 text-slate-300 text-xs font-semibold"
               >
                 Cancel
               </button>
@@ -488,7 +488,7 @@ export const ClassesView: React.FC<ClassesViewProps> = ({
                   onDeleteClass(deletingId);
                   setDeletingId(null);
                 }}
-                className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold shadow-md"
+                className="px-4 py-2 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold shadow-md"
               >
                 Delete Class
               </button>

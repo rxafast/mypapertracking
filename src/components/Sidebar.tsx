@@ -64,7 +64,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Mobile Backdrop Overlay */}
       {isOpenMobile && (
         <div
-          className="fixed inset-0 bg-slate-950/80 backdrop-blur-xs z-40 lg:hidden"
+          className="fixed inset-0 bg-neutral-950/80 backdrop-blur-xs z-40 lg:hidden"
           onClick={onCloseMobile}
         />
       )}
@@ -119,7 +119,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   onSelectTab(item.id);
                   onCloseMobile();
                 }}
-                className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                className={`w-full flex items-center justify-between px-4 py-3 rounded-2xl text-sm font-medium transition-all duration-200 ${
                   isActive
                     ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20'
                     : 'text-neutral-400 hover:text-neutral-100 hover:bg-neutral-800/50'

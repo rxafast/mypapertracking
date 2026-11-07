@@ -99,7 +99,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-slate-800 p-6 sm:p-8">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-neutral-800 p-6 sm:p-8">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-semibold text-indigo-400">
@@ -121,14 +121,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => onNavigateTo('import')}
-              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs transition-colors flex items-center gap-2"
+              className="px-4 py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs transition-colors flex items-center gap-2"
             >
               <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
               Import Excel Roster
             </button>
             <button
               onClick={() => onNavigateTo('papers')}
-              className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/20 transition-colors flex items-center gap-2"
+              className="px-4 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/20 transition-colors flex items-center gap-2"
             >
               <FileCheck2 className="w-4 h-4" />
               Manage Papers
@@ -142,7 +142,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       {/* Overview Stat Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Card 1: Required Papers */}
-        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
+        <div className="p-5 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 shadow-sm">
           <div className="flex items-center justify-between text-slate-400 mb-3">
             <span className="text-xs font-semibold uppercase tracking-wider">{settings.activeSession} Papers Required</span>
             <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center">
@@ -155,14 +155,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
             <span className="text-xs text-slate-400 font-mono">{activeClasses.length} Combined Classes</span>
           </div>
-          <div className="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+          <div className="mt-3 pt-3 border-t border-neutral-800/80 flex items-center justify-between text-xs text-slate-400">
             <span>{totalStudents} Enrolled Students</span>
             <span className="text-indigo-400 font-medium">100% Tracked</span>
           </div>
         </div>
 
         {/* Card 2: Papers Created */}
-        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
+        <div className="p-5 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 shadow-sm">
           <div className="flex items-center justify-between text-slate-400 mb-3">
             <span className="text-xs font-semibold uppercase tracking-wider">Papers Created / Ready</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
@@ -175,14 +175,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
             <span className="text-xs text-emerald-400/80 font-mono font-semibold">{finalizedCount} Finalized</span>
           </div>
-          <div className="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+          <div className="mt-3 pt-3 border-t border-neutral-800/80 flex items-center justify-between text-xs text-slate-400">
             <span>Progress Status</span>
             <span className="text-emerald-400 font-semibold">{completionPercentage}% Ready</span>
           </div>
         </div>
 
         {/* Card 3: Pending Papers */}
-        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
+        <div className="p-5 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 shadow-sm">
           <div className="flex items-center justify-between text-slate-400 mb-3">
             <span className="text-xs font-semibold uppercase tracking-wider">Pending Papers</span>
             <div className="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center">
@@ -195,7 +195,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
             <span className="text-xs text-indigo-400 font-mono">{inProgressCount} In Progress</span>
           </div>
-          <div className="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+          <div className="mt-3 pt-3 border-t border-neutral-800/80 flex items-center justify-between text-xs text-slate-400">
             <span>Action Required</span>
             <button
               onClick={() => onNavigateTo('pending')}
@@ -207,7 +207,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
 
         {/* Card 4: Overall Completion % */}
-        <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
+        <div className="p-5 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 shadow-sm">
           <div className="flex items-center justify-between text-slate-400 mb-3">
             <span className="text-xs font-semibold uppercase tracking-wider">Overall Completion</span>
             <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center">
@@ -228,7 +228,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               />
             </div>
           </div>
-          <div className="mt-3 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+          <div className="mt-3 pt-3 border-t border-neutral-800/80 flex items-center justify-between text-xs text-slate-400">
             <span>Target: 100%</span>
             <span className="text-slate-300 font-medium">
               {completionPercentage === 100 ? '🎉 Complete!' : `${100 - completionPercentage}% remaining`}
@@ -238,7 +238,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       </div>
 
       {/* Theory vs Lab Examination Breakdown */}
-      <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+      <div className="p-6 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-base font-bold text-slate-100 flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-indigo-400" /> Theory & Lab Papers for {settings.activeSession} Cohort
@@ -248,7 +248,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Theory Papers Panel */}
-          <div className="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+          <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-3">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold text-slate-200 flex items-center gap-1.5">
                 <BookOpen className="w-4 h-4 text-indigo-400" /> Theory Examination Papers
@@ -259,15 +259,15 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
 
             <div className="grid grid-cols-3 gap-2 text-center text-xs pt-1">
-              <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+              <div className="p-2.5 rounded-lg bg-neutral-900/50 backdrop-blur-md border border-neutral-800">
                 <span className="text-[10px] text-slate-400 block">Required</span>
                 <span className="text-lg font-bold font-mono text-slate-100">{totalTheoryRequired}</span>
               </div>
-              <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+              <div className="p-2.5 rounded-lg bg-neutral-900/50 backdrop-blur-md border border-neutral-800">
                 <span className="text-[10px] text-slate-400 block">Created</span>
                 <span className="text-lg font-bold font-mono text-emerald-400">{theoryCreated}</span>
               </div>
-              <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+              <div className="p-2.5 rounded-lg bg-neutral-900/50 backdrop-blur-md border border-neutral-800">
                 <span className="text-[10px] text-slate-400 block">Pending</span>
                 <span className="text-lg font-bold font-mono text-rose-400">{pendingTheory}</span>
               </div>
@@ -282,7 +282,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
 
           {/* Lab Papers Panel */}
-          <div className="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+          <div className="p-5 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-3">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold text-slate-200 flex items-center gap-1.5">
                 <FlaskConical className="w-4 h-4 text-purple-400" /> Final Lab Examination Papers
@@ -293,15 +293,15 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
 
             <div className="grid grid-cols-3 gap-2 text-center text-xs pt-1">
-              <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+              <div className="p-2.5 rounded-lg bg-neutral-900/50 backdrop-blur-md border border-neutral-800">
                 <span className="text-[10px] text-slate-400 block">Required</span>
                 <span className="text-lg font-bold font-mono text-slate-100">{totalLabRequired}</span>
               </div>
-              <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+              <div className="p-2.5 rounded-lg bg-neutral-900/50 backdrop-blur-md border border-neutral-800">
                 <span className="text-[10px] text-slate-400 block">Created</span>
                 <span className="text-lg font-bold font-mono text-emerald-400">{labCreated}</span>
               </div>
-              <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+              <div className="p-2.5 rounded-lg bg-neutral-900/50 backdrop-blur-md border border-neutral-800">
                 <span className="text-[10px] text-slate-400 block">Pending</span>
                 <span className="text-lg font-bold font-mono text-rose-400">{pendingLab}</span>
               </div>
@@ -319,10 +319,10 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
       {/* Pending Papers Action Area & Program Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+        <div className="lg:col-span-2 p-6 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20">
+              <div className="p-2 rounded-2xl bg-rose-500/10 text-rose-400 border border-rose-500/20">
                 <AlertCircle className="w-4 h-4" />
               </div>
               <div>
@@ -339,7 +339,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
 
           {urgentPendingPapers.length === 0 ? (
-            <div className="p-8 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-2">
+            <div className="p-8 rounded-2xl bg-neutral-950 border border-neutral-800 text-center space-y-2">
               <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
               <h4 className="text-sm font-bold text-slate-200">No Pending Papers!</h4>
               <p className="text-xs text-slate-400">All required examination papers for {settings.academicYear} have been created.</p>
@@ -349,7 +349,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               {urgentPendingPapers.map((paper) => (
                 <div
                   key={paper.id}
-                  className="p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                  className="p-3.5 rounded-2xl bg-neutral-950 border border-neutral-800/80 hover:border-slate-700 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3"
                 >
                   <div className="space-y-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -399,7 +399,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
 
         {/* Right Col: Program Breakdown */}
-        <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+        <div className="p-6 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-slate-100">Program Breakdown</h3>
             <span className="text-xs font-mono text-slate-400">{programStats.length} Programs</span>
@@ -407,7 +407,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
           <div className="space-y-3 max-h-[340px] overflow-y-auto pr-1">
             {programStats.map((stat, idx) => (
-              <div key={idx} className="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+              <div key={idx} className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold text-slate-200">
                   <span className="truncate max-w-[170px]">{stat.programName}</span>
                   <span className="font-mono text-indigo-400">{stat.percentage}%</span>

@@ -115,7 +115,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-800">
         <div>
           <h1 className="text-2xl font-bold text-slate-100">Excel / CSV Class Data Import</h1>
           <p className="text-xs text-slate-400 mt-1">
@@ -126,7 +126,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
         {step !== 'upload' && (
           <button
             onClick={resetImport}
-            className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 self-start sm:self-center"
+            className="px-3.5 py-1.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 self-start sm:self-center"
           >
             <RefreshCw className="w-3.5 h-3.5" /> Start Over
           </button>
@@ -150,12 +150,12 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
           return (
             <div
               key={s.key}
-              className={`p-2.5 rounded-xl border text-center text-xs font-semibold transition-colors ${
+              className={`p-2.5 rounded-2xl border text-center text-xs font-semibold transition-colors ${
                 isActive
                   ? 'bg-indigo-600 text-white border-indigo-500 shadow-md'
                   : isDone
                   ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
-                  : 'bg-slate-900 text-slate-500 border-slate-800'
+                  : 'bg-neutral-900/50 backdrop-blur-md text-slate-500 border-neutral-800'
               }`}
             >
               {s.label}
@@ -166,7 +166,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
 
       {/* Error Alert Box */}
       {errorMsg && (
-        <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-3">
+        <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-3">
           <AlertCircle className="w-5 h-5 shrink-0" />
           <span>{errorMsg}</span>
         </div>
@@ -178,7 +178,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
           <div
             onDragOver={(e) => e.preventDefault()}
             onDrop={handleDrop}
-            className="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-10 text-center bg-slate-900/60 hover:bg-slate-900 transition-all cursor-pointer group"
+            className="border-2 border-dashed border-slate-700 hover:border-indigo-500 rounded-2xl p-10 text-center bg-neutral-900/50 backdrop-blur-md/60 hover:bg-neutral-900/50 backdrop-blur-md transition-all cursor-pointer group"
           >
             <input
               type="file"
@@ -197,13 +197,13 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                 </h3>
                 <p className="text-xs text-slate-400">Supports .xlsx, .xls and .csv format</p>
               </div>
-              <span className="inline-block px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-colors">
+              <span className="inline-block px-4 py-2 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-colors">
                 Browse File
               </span>
             </label>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3 text-xs text-slate-300">
+          <div className="p-5 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-3 text-xs text-slate-300">
             <div className="flex items-center gap-2 text-indigo-400 font-bold">
               <Info className="w-4 h-4" />
               <span>Subject Type & Class Extraction Rules</span>
@@ -227,14 +227,14 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
       {/* STEP 2: COLUMN MAPPING */}
       {step === 'mapping' && (
         <div className="space-y-6">
-          <div className="p-4 rounded-xl bg-indigo-950/40 border border-indigo-800/40 text-xs text-indigo-200 flex items-center justify-between">
+          <div className="p-4 rounded-2xl bg-indigo-950/40 border border-indigo-800/40 text-xs text-indigo-200 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FileSpreadsheet className="w-4 h-4 text-indigo-400" />
               <span>File: <strong>{fileName}</strong> ({rawRows.length} rows loaded)</span>
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+          <div className="p-6 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-4">
             <h3 className="text-sm font-bold text-slate-100">Confirm Column Mappings</h3>
             <p className="text-xs text-slate-400">
               Match your Excel headers to system fields. Missing columns will use default fallbacks.
@@ -250,7 +250,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                 <select
                   value={mapping.program}
                   onChange={(e) => setMapping({ ...mapping, program: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="">-- Select Excel Column --</option>
                   {rawColumns.map((col) => (
@@ -268,7 +268,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                 <select
                   value={mapping.subjectType}
                   onChange={(e) => setMapping({ ...mapping, subjectType: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-purple-500/40 text-slate-200 text-xs focus:border-purple-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-purple-500/40 text-slate-200 text-xs focus:border-purple-500 focus:outline-none"
                 >
                   <option value="">-- Select Excel Column (Optional / Manual Default below) --</option>
                   {rawColumns.map((col) => (
@@ -283,7 +283,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                 <select
                   value={mapping.semester}
                   onChange={(e) => setMapping({ ...mapping, semester: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="">-- Select Excel Column (Default: 1) --</option>
                   {rawColumns.map((col) => (
@@ -298,7 +298,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                 <select
                   value={mapping.section}
                   onChange={(e) => setMapping({ ...mapping, section: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="">-- Select Excel Column (Default: A) --</option>
                   {rawColumns.map((col) => (
@@ -313,7 +313,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                 <select
                   value={mapping.session}
                   onChange={(e) => setMapping({ ...mapping, session: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="">-- Select Excel Column (Default: {settings.activeSession}) --</option>
                   {rawColumns.map((col) => (
@@ -328,7 +328,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                 <select
                   value={mapping.subject}
                   onChange={(e) => setMapping({ ...mapping, subject: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="">-- Select Excel Column (Default: {settings.primarySubject}) --</option>
                   {rawColumns.map((col) => (
@@ -340,7 +340,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
           </div>
 
           {/* Import Context Overrides */}
-          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+          <div className="p-6 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-4">
             <h3 className="text-sm font-bold text-slate-100">Default Target Context</h3>
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
               <div>
@@ -349,7 +349,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                   type="text"
                   value={importYear}
                   onChange={(e) => setImportYear(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                 />
               </div>
 
@@ -358,7 +358,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                 <select
                   value={importSession}
                   onChange={(e) => setImportSession(e.target.value as AcademicSession)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                 >
                   <option value="Fall">Fall</option>
                   <option value="Spring">Spring</option>
@@ -371,7 +371,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                   type="text"
                   value={importSubject}
                   onChange={(e) => setImportSubject(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                 />
               </div>
 
@@ -380,7 +380,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
                 <select
                   value={importSubjectType}
                   onChange={(e) => setImportSubjectType(e.target.value as SubjectType)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-purple-500/40 text-purple-200 font-bold text-xs"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-purple-500/40 text-purple-200 font-bold text-xs"
                 >
                   <option value="Theory + Lab">Theory + Lab (Generates Final Lab)</option>
                   <option value="Theory Only">Theory Only (No Lab)</option>
@@ -392,13 +392,13 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
           <div className="flex justify-end gap-3">
             <button
               onClick={resetImport}
-              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
+              className="px-4 py-2 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
             >
               Cancel
             </button>
             <button
               onClick={handleConfirmMapping}
-              className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center gap-2"
+              className="px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center gap-2"
             >
               Continue to Preview <ArrowRight className="w-4 h-4" />
             </button>
@@ -409,7 +409,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
       {/* STEP 3: PREVIEW & CONFIRM */}
       {step === 'preview' && (
         <div className="space-y-6">
-          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+          <div className="p-6 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-4">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-sm font-bold text-slate-100">Excel Data Sample Preview</h3>
@@ -418,9 +418,9 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
               <span className="text-xs font-mono text-indigo-400">{rawRows.length} Total Rows</span>
             </div>
 
-            <div className="overflow-x-auto rounded-xl border border-slate-800">
+            <div className="overflow-x-auto rounded-2xl border border-neutral-800">
               <table className="w-full text-left text-xs">
-                <thead className="bg-slate-950 text-slate-400 border-b border-slate-800">
+                <thead className="bg-neutral-950 text-slate-400 border-b border-neutral-800">
                   <tr>
                     <th className="p-3">#</th>
                     <th className="p-3">Program</th>
@@ -457,7 +457,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
           <div className="flex justify-between items-center">
             <button
               onClick={() => setStep('mapping')}
-              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
+              className="px-4 py-2 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
             >
               Back to Mapping
             </button>
@@ -465,7 +465,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
             <button
               onClick={handleExecuteImport}
               disabled={isProcessing}
-              className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/20 flex items-center gap-2"
+              className="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/20 flex items-center gap-2"
             >
               {isProcessing ? (
                 <>Processing Import...</>
@@ -481,7 +481,7 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
 
       {/* STEP 4: COMPLETE SUMMARY */}
       {step === 'complete' && summary && (
-        <div className="p-8 rounded-2xl bg-slate-900 border border-slate-800 space-y-6 text-center">
+        <div className="p-8 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 space-y-6 text-center">
           <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
             <CheckCircle2 className="w-10 h-10" />
           </div>
@@ -492,19 +492,19 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto py-2">
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800">
               <span className="text-[11px] text-slate-400 block mb-1">Rows Processed</span>
               <span className="text-xl font-bold font-mono text-slate-100">{summary.totalRowsProcessed}</span>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800">
               <span className="text-[11px] text-slate-400 block mb-1">Unique Classes</span>
               <span className="text-xl font-bold font-mono text-indigo-400">{summary.uniqueClassesIdentified}</span>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800">
               <span className="text-[11px] text-slate-400 block mb-1">New Classes</span>
               <span className="text-xl font-bold font-mono text-emerald-400">{summary.newClassesAdded}</span>
             </div>
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800">
               <span className="text-[11px] text-slate-400 block mb-1">Papers Generated</span>
               <span className="text-xl font-bold font-mono text-amber-400">{summary.paperRequirementsGenerated}</span>
             </div>
@@ -513,13 +513,13 @@ export const ExcelImportView: React.FC<ExcelImportViewProps> = ({ settings, onIm
           <div className="pt-4 flex justify-center gap-4">
             <button
               onClick={resetImport}
-              className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold"
+              className="px-5 py-2.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold"
             >
               Import Another File
             </button>
             <button
               onClick={() => onImportCompleted([], summary)}
-              className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/20"
+              className="px-6 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/20"
             >
               View Tracked Papers
             </button>

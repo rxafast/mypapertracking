@@ -162,7 +162,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-neutral-800">
         <div>
           <h1 className="text-2xl font-bold text-slate-100">Examination Paper Management</h1>
           <p className="text-xs text-slate-400 mt-1">
@@ -172,14 +172,14 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
 
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/20 flex items-center gap-2 self-start sm:self-center shrink-0"
+          className="px-4 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/20 flex items-center gap-2 self-start sm:self-center shrink-0"
         >
           <Plus className="w-4 h-4" /> Add Paper Requirement
         </button>
       </div>
 
       {/* Multi-Filter Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 p-4 rounded-2xl bg-slate-900 border border-slate-800">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 p-4 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800">
         <div className="relative md:col-span-1">
           <Search className="w-4 h-4 text-slate-500 absolute left-3 top-3" />
           <input
@@ -187,7 +187,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
             placeholder="Search papers..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+            className="w-full pl-9 pr-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
           />
         </div>
 
@@ -195,7 +195,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
           <select
             value={filterProgram}
             onChange={(e) => setFilterProgram(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+            className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
           >
             <option value="All">All Programs ({uniquePrograms.length})</option>
             {uniquePrograms.map((prog) => (
@@ -208,7 +208,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
           <select
             value={filterSession}
             onChange={(e) => setFilterSession(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+            className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
           >
             <option value="All">All Sessions</option>
             <option value="Fall">Fall</option>
@@ -220,7 +220,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+            className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
           >
             <option value="All">All Categories (Theory & Lab)</option>
             <option value="Theory">Theory Papers Only</option>
@@ -232,7 +232,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
+            className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:border-indigo-500 focus:outline-none"
           >
             <option value="All">All Statuses</option>
             <option value="Pending">Pending</option>
@@ -254,7 +254,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
         </div>
 
         {filteredPapers.length === 0 ? (
-          <div className="p-10 rounded-2xl bg-slate-900 border border-slate-800 text-center text-slate-500 text-xs">
+          <div className="p-10 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 text-center text-slate-500 text-xs">
             No papers match the current filters.
           </div>
         ) : (
@@ -262,7 +262,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
             {filteredPapers.map((paper) => (
               <div
                 key={paper.id}
-                className="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all space-y-3 flex flex-col justify-between"
+                className="p-5 rounded-2xl bg-neutral-900/50 backdrop-blur-md border border-neutral-800 hover:border-slate-700 transition-all space-y-3 flex flex-col justify-between"
               >
                 {/* Card Top Header */}
                 <div className="space-y-1.5">
@@ -304,7 +304,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                 </div>
 
                 {/* Dates & Attachment details */}
-                <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/80 text-xs space-y-1.5 font-mono text-slate-400">
+                <div className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800/80 text-xs space-y-1.5 font-mono text-slate-400">
                   <div className="flex justify-between">
                     <span>Session & Type:</span>
                     <span className="text-slate-200">
@@ -324,7 +324,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                     </div>
                   )}
                   {paper.attachment && (
-                    <div className="flex items-center justify-between text-indigo-400 pt-1 border-t border-slate-800">
+                    <div className="flex items-center justify-between text-indigo-400 pt-1 border-t border-neutral-800">
                       <span className="flex items-center gap-1 text-[11px] truncate max-w-[200px]">
                         <Paperclip className="w-3 h-3" /> {paper.attachment.name}
                       </span>
@@ -334,13 +334,13 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                 </div>
 
                 {paper.remarks && (
-                  <p className="text-xs text-slate-400 italic bg-slate-950/40 p-2 rounded-lg border border-slate-800/40 leading-relaxed">
+                  <p className="text-xs text-slate-400 italic bg-neutral-950/40 p-2 rounded-lg border border-neutral-800/40 leading-relaxed">
                     "{paper.remarks}"
                   </p>
                 )}
 
                 {/* 1-Click Status Quick Transitions */}
-                <div className="pt-2 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
+                <div className="pt-2 border-t border-neutral-800 flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-1.5 flex-wrap">
                     {(['Pending', 'In Progress', 'Created', 'Reviewed', 'Finalized'] as PaperStatus[]).map(
                       (st) => (
@@ -350,7 +350,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                           className={`px-2 py-1 text-[11px] font-semibold rounded-lg transition-colors border ${
                             paper.status === st
                               ? 'bg-indigo-600 text-white border-indigo-500 shadow-xs'
-                              : 'bg-slate-950 hover:bg-slate-800 text-slate-400 border-slate-800'
+                              : 'bg-neutral-950 hover:bg-slate-800 text-slate-400 border-neutral-800'
                           }`}
                         >
                           {st}
@@ -391,9 +391,9 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
 
       {/* Edit Remarks / Exam Date Modal */}
       {editingPaper && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
-          <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-xs">
+          <div className="w-full max-w-md bg-neutral-900/50 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
               <h3 className="text-base font-bold text-slate-100">Update Paper Details</h3>
               <button onClick={() => setEditingPaper(null)} className="p-1 text-slate-400 hover:text-white">
                 <X className="w-5 h-5" />
@@ -406,7 +406,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                 <select
                   value={editStatus}
                   onChange={(e) => setEditStatus(e.target.value as PaperStatus)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                 >
                   <option value="Pending">Pending</option>
                   <option value="In Progress">In Progress</option>
@@ -421,7 +421,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                 <select
                   value={editTerm}
                   onChange={(e) => setEditTerm(e.target.value as 'Midterm' | 'Final')}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                 >
                   <option value="Midterm">Midterm</option>
                   <option value="Final">Final</option>
@@ -434,7 +434,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                   type="date"
                   value={editExamDate}
                   onChange={(e) => setEditExamDate(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-mono"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-mono"
                 />
               </div>
 
@@ -445,21 +445,21 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                   value={editRemarks}
                   onChange={(e) => setEditRemarks(e.target.value)}
                   placeholder="e.g. MCQs drafted, lab practical task sheet ready..."
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs focus:outline-none"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs focus:outline-none"
                 />
               </div>
 
-              <div className="flex justify-end gap-3 pt-2 border-t border-slate-800">
+              <div className="flex justify-end gap-3 pt-2 border-t border-neutral-800">
                 <button
                   type="button"
                   onClick={() => setEditingPaper(null)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold"
+                  className="px-4 py-2 rounded-2xl bg-slate-800 text-slate-300 text-xs font-semibold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold"
+                  className="px-5 py-2 rounded-2xl bg-indigo-600 text-white text-xs font-bold"
                 >
                   Save Paper Details
                 </button>
@@ -471,9 +471,9 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
 
       {/* Attach File Modal */}
       {attachingPaper && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
-          <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-xs">
+          <div className="w-full max-w-md bg-neutral-900/50 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
               <h3 className="text-base font-bold text-slate-100">Attach Draft Paper File</h3>
               <button onClick={() => setAttachingPaper(null)} className="p-1 text-slate-400 hover:text-white">
                 <X className="w-5 h-5" />
@@ -489,7 +489,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                   value={attachmentName}
                   onChange={(e) => setAttachmentName(e.target.value)}
                   placeholder="e.g. ICT_FinalLab_2026_Draft.docx"
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                 />
               </div>
 
@@ -497,13 +497,13 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                 <button
                   type="button"
                   onClick={() => setAttachingPaper(null)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold"
+                  className="px-4 py-2 rounded-2xl bg-slate-800 text-slate-300 text-xs font-semibold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold"
+                  className="px-5 py-2 rounded-2xl bg-indigo-600 text-white text-xs font-bold"
                 >
                   Attach File
                 </button>
@@ -515,9 +515,9 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
 
       {/* Add Custom Paper Requirement Modal */}
       {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
-          <div className="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-xs">
+          <div className="w-full max-w-lg bg-neutral-900/50 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 shadow-2xl space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-neutral-800">
               <h3 className="text-base font-bold text-slate-100">Add Paper Requirement</h3>
               <button onClick={() => setIsAddModalOpen(false)} className="p-1 text-slate-400 hover:text-white">
                 <X className="w-5 h-5" />
@@ -532,7 +532,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                   required
                   value={addProgram}
                   onChange={(e) => setAddProgram(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                  className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                 />
               </div>
 
@@ -542,7 +542,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                   <select
                     value={addSession}
                     onChange={(e) => setAddSession(e.target.value as AcademicSession)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                   >
                     <option value="Fall">Fall</option>
                     <option value="Spring">Spring</option>
@@ -554,7 +554,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                   <select
                     value={addExamType}
                     onChange={(e) => setAddExamType(e.target.value as ExaminationType)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-semibold"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-semibold"
                   >
                     <option value="Midterm Theory">Midterm Theory</option>
                     <option value="Final Theory">Final Theory</option>
@@ -573,7 +573,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                     required
                     value={addSubject}
                     onChange={(e) => setAddSubject(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs"
                   />
                 </div>
 
@@ -582,7 +582,7 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                   <select
                     value={addSubjectType}
                     onChange={(e) => setAddSubjectType(e.target.value as SubjectType)}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs font-semibold"
+                    className="w-full px-3 py-2 rounded-2xl bg-neutral-950 border border-neutral-800 text-slate-200 text-xs font-semibold"
                   >
                     <option value="Theory Only">Theory Only</option>
                     <option value="Theory + Lab">Theory + Lab</option>
@@ -590,17 +590,17 @@ export const PaperManagementView: React.FC<PaperManagementViewProps> = ({
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 pt-2 border-t border-slate-800">
+              <div className="flex justify-end gap-3 pt-2 border-t border-neutral-800">
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold"
+                  className="px-4 py-2 rounded-2xl bg-slate-800 text-slate-300 text-xs font-semibold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-bold"
+                  className="px-5 py-2.5 rounded-2xl bg-indigo-600 text-white text-xs font-bold"
                 >
                   Add Requirement
                 </button>
