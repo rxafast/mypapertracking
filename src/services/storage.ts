@@ -198,6 +198,8 @@ export class StorageService {
 
         requiredExamSpecs.forEach((spec) => {
           const paperId = generatePaperId(c.id, sessionCohort, spec.examType);
+          
+          // CRITICAL FIX: Do NOT generate if the paper was explicitly deleted
           if (!paperMap.has(paperId) && !deletedIds.has(paperId)) {
             const newPaper: ExaminationPaper = {
               id: paperId,

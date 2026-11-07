@@ -197,12 +197,12 @@ export default function App() {
   };
 
   // Delete Paper
-  const handleDeletePaperRequirement = (paperId: string) => {
+  const handleDeletePaperRequirement = async (paperId: string) => {
     StorageService.addDeletedPaperId(paperId);
-    SupabaseService.deletePaper(paperId);
+    await SupabaseService.deletePaper(paperId);
     const updated = papers.filter((p) => p.id !== paperId);
     setPapers(updated);
-    SupabaseService.savePapers(updated);
+    await SupabaseService.savePapers(updated);
     addToast('Paper requirement deleted permanently', 'info');
   };
 

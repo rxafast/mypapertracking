@@ -134,7 +134,10 @@ export class SupabaseService {
   static async deletePaper(paperId: string): Promise<void> {
     StorageService.addDeletedPaperId(paperId);
     try {
-      await supabase.from('papers').delete().eq('id', paperId);
+      const { error } = await supabase.from('papers').delete().eq('id', paperId);
+      if (error) {
+        console.error('Supabase deletePaper error:', error.message);
+      }
     } catch (e) {
       console.error('Supabase deletePaper error:', e);
     }
