@@ -174,32 +174,39 @@ export class StorageService {
     const paperMap = new Map<string, ExaminationPaper>();
     const deletedIds = this.getDeletedPaperIds();
 
-    existingPapers.forEach((p) => paperMap.set(p.id, p));
+    existingPapers.forEach((p) => {
+      // Apply validation: Midterm papers cannot be Lab
+      if (p.term === 'Midterm' && p.paperCategory === 'Lab') {
+        p.paperCategory = 'Theory';
+      }
+      paperMap.set(p.id, p);
+    });
     let newRequirementsAdded = 0;
 
     classes.forEach((c) => {
       const subjectType: SubjectType = c.subjectType || 'Theory + Lab';
 
-      // Determine sessions to generate for (If students sit together, generate for both Fall and Spring)
+      // Determine sessions to generate for
       const targetSessions: AcademicSession[] = c.hasSeparateCohortPapers !== false ? ['Fall', 'Spring'] : [c.academicSession];
 
       targetSessions.forEach((sessionCohort) => {
+        // Enforce Term/Category Rules
         const requiredExamSpecs: {
           examType: ExaminationType;
+          term: 'Midterm' | 'Final';
           category: PaperCategory;
         }[] = [
-          { examType: 'Midterm Theory', category: 'Theory' },
-          { examType: 'Final Theory', category: 'Theory' },
+          { examType: 'Midterm Theory', term: 'Midterm', category: 'Theory' },
+          { examType: 'Final Theory', term: 'Final', category: 'Theory' },
         ];
 
         if (subjectType === 'Theory + Lab') {
-          requiredExamSpecs.push({ examType: 'Final Lab', category: 'Lab' });
+          requiredExamSpecs.push({ examType: 'Final Lab', term: 'Final', category: 'Lab' });
         }
 
         requiredExamSpecs.forEach((spec) => {
           const paperId = generatePaperId(c.id, sessionCohort, spec.examType);
           
-          // CRITICAL FIX: Do NOT generate if the paper was explicitly deleted
           if (!paperMap.has(paperId) && !deletedIds.has(paperId)) {
             const newPaper: ExaminationPaper = {
               id: paperId,
@@ -214,8 +221,8 @@ export class StorageService {
               subjectCode: c.subjectCode,
               subjectType: subjectType,
               examinationType: spec.examType,
+              term: spec.term,
               paperCategory: spec.category,
-              term: spec.examType.toLowerCase().includes('midterm') ? 'Midterm' : 'Final',
               status: 'Pending',
               lastUpdatedDate: new Date().toISOString().split('T')[0],
               remarks: `Separate paper auto-generated for ${c.programName} (${sessionCohort} Cohort).`,
